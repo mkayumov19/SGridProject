@@ -33,55 +33,56 @@ public class Driver {
             System.out.println("Browser: " + browser);
             switch (browser) {
                 case "remote-chrome":
-                    try {
-                        URL url = new URL("http://18.212.57.48:4444/wd/hub");
-                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName("chrome");
-                        driver = new RemoteWebDriver(url, desiredCapabilities);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    break;
+                        try {
+                            String ipAddress = "3.83.90.189";
+                            URL url = new URL("http://" + ipAddress + ":4444/wd/hub");
+                            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                            desiredCapabilities.setBrowserName("chrome");
+                            driver = new RemoteWebDriver(url, desiredCapabilities);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 case "chrome":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    break;
+                        WebDriverManager.chromedriver().setup();
+                        driver = new ChromeDriver();
+                        break;
                 case "chrome-headless":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
-                    break;
+                        WebDriverManager.chromedriver().setup();
+                        driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
+                        break;
                 case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    break;
+                        WebDriverManager.firefoxdriver().setup();
+                        driver = new FirefoxDriver();
+                        break;
                 case "firefox-headless":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true));
-                    break;
+                        WebDriverManager.firefoxdriver().setup();
+                        driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true));
+                        break;
 
                 case "ie":
-                    if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-                        throw new WebDriverException("Your operating system does not support the requested browser");
-                    }
-                    WebDriverManager.iedriver().setup();
-                    driver = new InternetExplorerDriver();
-                    break;
+                        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+                            throw new WebDriverException("Your operating system does not support the requested browser");
+                        }
+                        WebDriverManager.iedriver().setup();
+                        driver = new InternetExplorerDriver();
+                        break;
 
                 case "edge":
-                    if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-                        throw new WebDriverException("Your operating system does not support the requested browser");
-                    }
-                    WebDriverManager.edgedriver().setup();
-                    driver = new EdgeDriver();
-                    break;
+                        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+                            throw new WebDriverException("Your operating system does not support the requested browser");
+                        }
+                        WebDriverManager.edgedriver().setup();
+                        driver = new EdgeDriver();
+                        break;
 
                 case "safari":
-                    if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-                        throw new WebDriverException("Your operating system does not support the requested browser");
-                    }
-                    WebDriverManager.getInstance(SafariDriver.class).setup();
-                    driver = new SafariDriver();
-                    break;
+                        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                            throw new WebDriverException("Your operating system does not support the requested browser");
+                        }
+                        WebDriverManager.getInstance(SafariDriver.class).setup();
+                        driver = new SafariDriver();
+                        break;
             }
         }
 
